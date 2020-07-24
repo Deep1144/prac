@@ -1,0 +1,31 @@
+Hello {{this.authService.currentUser.name}}
+
+<div class="container mt-5">
+    <form class="example-form" #newcategoryForm="ngForm" (ngSubmit)="addnewCategory(newcategoryForm)">
+        <mat-form-field class="example-full-width">
+            <mat-label>Category name</mat-label>
+            <input required matInput placeholder="mobile phones" name="name" [(ngModel)]="this.nameOfNewCategory" />
+        </mat-form-field>
+
+        <button type="submit" mat-raised-button color="primary">Add</button>
+    </form>
+
+    <section class="example-section">
+        <mat-checkbox class="example-margin" name="checked" [(ngModel)]="checked">
+            parent category!</mat-checkbox>
+    </section>
+
+    <select *ngIf="checked" name="parent" (change)="parentcategoryChanges($event)">
+        <option *ngFor="let category of allCategoryList" [value]="category._id">
+            {{ category.name }}
+        </option>
+    </select>
+
+
+    <mat-divider class="mt-5"></mat-divider>
+
+    <h1>Add Productes</h1>
+
+
+    <app-products ></app-products>
+</div>
